@@ -39,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_share, R.id.nav_send
+                R.id.nav_home,
+                R.id.nav_share,
+                R.id.nav_send
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 ToastUtil.showToast("Hello Gaad examinee")
                 return true
             }
-            R.id.custom_toast->{
+            R.id.custom_toast -> {
                 prepareLayout()
                 return true
             }
@@ -72,9 +74,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun prepareLayout(){
+    fun prepareLayout() {
         val inflater = layoutInflater
-        val layout: ViewGroup = inflater.inflate(R.layout.toast_layout, findViewById(R.id.custom_toast_container)) as ViewGroup
+        val layout: ViewGroup = inflater.inflate(
+            R.layout.toast_layout,
+            findViewById(R.id.custom_toast_container)
+        ) as ViewGroup
         val text: TextView = layout.findViewById(R.id.text)
         text.text = "This is a custom toast"
         ToastUtil.showToastWithCustomLayout(layout)
