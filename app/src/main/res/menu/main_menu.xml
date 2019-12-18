@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="example.javatpoint.com.optionmenu.MainActivity">
+
+    <item  android:id="@+id/show_toast"
+        android:title="Show Toast"/>
+    <item  android:id="@+id/custom_toast"
+        android:title="Show CToast"/>
+</menu>
