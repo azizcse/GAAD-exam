@@ -3,6 +3,7 @@ package com.w3engineers.testkt.user
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.w3engineers.testkt.R
 import com.w3engineers.testkt.data.Injector
 import io.reactivex.disposables.CompositeDisposable
@@ -21,8 +22,8 @@ class UserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_user)
 
-       // viewModelFactory = Injector.provideViewModelFactory(this)
-        //viewModel = viewModelFactory.
+        viewModelFactory = Injector.provideViewModelFactory(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
         //update_user_button.setOnClickListener { updateUserName() }
     }
 
