@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.w3engineers.testkt.notify.NotificationUtil
 import com.w3engineers.testkt.toast.ToastUtil
 
 class MainActivity : AppCompatActivity() {
@@ -68,6 +69,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.custom_toast -> {
                 prepareLayout()
+                return true
+            }
+            R.id.show_notification->{
+                NotificationUtil.showNotification(applicationContext)
                 return true
             }
             else -> super.onOptionsItemSelected(item)
