@@ -106,7 +106,7 @@ object NotificationUtil {
         notificationManager.notify(100, notifyBuilder?.build())
     }
 
-    private fun showDownloadProgress(context: Context){
+    private fun showDownloadProgress(context: Context) {
         val builder = NotificationCompat.Builder(context, "").apply {
             setContentTitle("Picture Download")
             setContentText("Download in progress")
