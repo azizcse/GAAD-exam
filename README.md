@@ -5,3 +5,4 @@
 - Snack bar
 - NavigationDrawer
 - Notification 
+- Sample UI test by Espresso
