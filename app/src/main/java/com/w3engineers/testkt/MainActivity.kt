@@ -1,5 +1,6 @@
 package com.w3engineers.testkt
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
@@ -17,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.w3engineers.testkt.notify.NotificationUtil
 import com.w3engineers.testkt.toast.ToastUtil
+import com.w3engineers.testkt.ui.JobServiceActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,8 +73,12 @@ class MainActivity : AppCompatActivity() {
                 prepareLayout()
                 return true
             }
-            R.id.show_notification->{
+            R.id.show_notification -> {
                 NotificationUtil.showNotification(applicationContext)
+                return true
+            }
+            R.id.start_job_service -> {
+                startActivity(Intent(this, JobServiceActivity::class.java))
                 return true
             }
             else -> super.onOptionsItemSelected(item)
