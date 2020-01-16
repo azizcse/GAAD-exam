@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="city">
+        <item>Dhaka</item>
+        <item>Khulna</item>
+        <item>Jashore</item>
+        <item>Rajshahi</item>
+    </array>
+</resources>
