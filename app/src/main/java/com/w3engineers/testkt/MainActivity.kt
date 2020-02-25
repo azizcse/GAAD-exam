@@ -1,12 +1,13 @@
 package com.w3engineers.testkt
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -21,11 +22,18 @@ import com.w3engineers.testkt.notify.NotificationUtil
 import com.w3engineers.testkt.toast.ToastUtil
 import com.w3engineers.testkt.ui.DispatchQueue
 import com.w3engineers.testkt.ui.JobServiceActivity
+import com.w3engineers.testkt.ui.SerialEventQueue
+import java.util.concurrent.Executor
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var dispatch: DispatchQueue
+    lateinit var executorService: ExecutorService
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,7 +62,19 @@ class MainActivity : AppCompatActivity() {
 
 
         dispatch = DispatchQueue()
+        executorService = newSerialExecutor("aziz")
+    }
 
+
+    //public static DispatchQueue main = new DispatchQueue(new Handler(Looper.getMainLooper()));
+    fun newSerialExecutor(name: String?): ExecutorService {
+        val executor: Executor = Executors.newCachedThreadPool { r ->
+            val thread = Thread(r)
+            thread.name = name
+            thread.isDaemon = true
+            thread
+        }
+        return SerialEventQueue(executor)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -90,8 +110,16 @@ class MainActivity : AppCompatActivity() {
 
             R.id.called_thread -> {
 
-                for (i in 1..10) {
-                    dispatch.dispatch(object : Runnable {
+                for (i in 1..3) {
+                    executorService.execute(object : Runnable {
+                        override fun run() {
+                            Thread.sleep(2000)
+                            Log.e("THREAD_TEST", "After 2 second $i")
+                        }
+                    })
+
+
+                    /*dispatch.dispatch(object : Runnable {
                         override fun run() {
                             //Thread.sleep(2000)
                             Log.e("THREAD_TEST", "After 2 second $i")
@@ -99,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
                             //dispatch.close()
                         }
-                    })
+                    })*/
                 }
                 true
             }
