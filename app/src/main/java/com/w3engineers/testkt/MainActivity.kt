@@ -89,13 +89,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.called_thread -> {
-                dispatch.dispatch(object : Runnable {
-                    override fun run() {
-                        Thread.sleep(2000)
-                        Log.e("THREAD_TEST","After 2 second")
-                        prepareLayout()
-                    }
-                })
+
+                for (i in 1..10) {
+                    dispatch.dispatch(object : Runnable {
+                        override fun run() {
+                            //Thread.sleep(2000)
+                            Log.e("THREAD_TEST", "After 2 second $i")
+                            prepareLayout()
+
+                            //dispatch.close()
+                        }
+                    })
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

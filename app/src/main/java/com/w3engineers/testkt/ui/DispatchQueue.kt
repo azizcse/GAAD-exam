@@ -18,24 +18,37 @@ class DispatchQueue {
         //handler = Handler()
         Log.e(TAG, "constructor called")
         val latch = CountDownLatch(1)
+
         val thread = Thread(Runnable {
+
             Log.e(TAG, "Called prepare")
             Looper.prepare()
+
             handler = Handler()
+
             Log.e(TAG, "Called countdown")
             latch.countDown()
+
             Log.e(TAG, "Called loop")
+
             Looper.loop()
 
         })
         if (name != null) thread.name = name
+
         thread.isDaemon = true
+
         Log.e(TAG, "Thread started")
+
         thread.start()
+
         try {
-            latch.await(5, TimeUnit.SECONDS)
+            latch.await(100, TimeUnit.SECONDS)
+
             Log.e(TAG, "Latch timeout")
+
         } catch (ex: InterruptedException) {
+
             return
         }
     }
