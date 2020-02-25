@@ -3,6 +3,7 @@ package com.w3engineers.testkt
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -18,12 +19,13 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.w3engineers.testkt.notify.NotificationUtil
 import com.w3engineers.testkt.toast.ToastUtil
+import com.w3engineers.testkt.ui.DispatchQueue
 import com.w3engineers.testkt.ui.JobServiceActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-
+    lateinit var dispatch: DispatchQueue
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,6 +51,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        dispatch = DispatchQueue()
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -80,6 +86,17 @@ class MainActivity : AppCompatActivity() {
             R.id.start_job_service -> {
                 startActivity(Intent(this, JobServiceActivity::class.java))
                 return true
+            }
+
+            R.id.called_thread -> {
+                dispatch.dispatch(object : Runnable {
+                    override fun run() {
+                        Thread.sleep(2000)
+                        Log.e("THREAD_TEST","After 2 second")
+                        prepareLayout()
+                    }
+                })
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }

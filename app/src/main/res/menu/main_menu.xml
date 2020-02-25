@@ -14,4 +14,6 @@
 
     <item  android:id="@+id/start_job_service"
         android:title="Job service"/>
+    <item  android:id="@+id/called_thread"
+        android:title="Run job"/>
 </menu>
