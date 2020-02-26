@@ -93,19 +93,19 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.show_toast -> {
                 ToastUtil.showToast("Hello Gaad examinee")
-                return true
+                true
             }
             R.id.custom_toast -> {
                 prepareLayout()
-                return true
+                true
             }
             R.id.show_notification -> {
                 NotificationUtil.showNotification(applicationContext)
-                return true
+                true
             }
             R.id.start_job_service -> {
                 startActivity(Intent(this, JobServiceActivity::class.java))
-                return true
+                true
             }
 
             R.id.called_thread -> {
