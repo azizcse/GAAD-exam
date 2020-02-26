@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                     })
 
 
-                    /*dispatch.dispatch(object : Runnable {
+                    dispatch.dispatch(object : Runnable {
                         override fun run() {
                             //Thread.sleep(2000)
                             Log.e("THREAD_TEST", "After 2 second $i")
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
                             //dispatch.close()
                         }
-                    })*/
+                    })
                 }
                 true
             }

@@ -56,7 +56,15 @@ class DispatchQueue {
     fun dispatch(runnable: Runnable): Boolean {
         if (handler == null)
             return false
-        return handler!!.post(runnable);
+        return handler!!.post(runnable)
+    }
+
+
+    fun dispatchWithDelay(runnable: Runnable, delay: Long): Boolean {
+        if (handler == null) {
+            return false
+        }
+        return handler!!.postDelayed(runnable, delay)
     }
 
     fun close() {
